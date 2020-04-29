@@ -28,7 +28,7 @@ for batch in datagen.flow(x, batch_size = 1,
                            save_to_dir = 'keras/agmented', save_prefix = 'kolar',
                            save_format = format_type):
     i += 1
-    if i > 10:
+    if i > 50:
         break
 
 import os
