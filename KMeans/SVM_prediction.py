@@ -1,3 +1,7 @@
+"""
+SVM Algorithm
+"""
+
 #Inporting Libraries
 import numpy as np
 import matplotlib.pyplot as plt
@@ -5,6 +9,8 @@ import pandas as pd
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.metrics import confusion_matrix
 from sklearn import cluster
+from sklearn.svm import SVC
+from sklearn.metrics import accuracy_score
 
 #importing Dataset and seperating Dependent and independent Variables
 dataset = pd.read_csv('data/im_data.csv')
@@ -16,10 +22,6 @@ y = dataset.iloc[:,4].values
 #Splitting training data and test Data
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size = 1/10, random_state = 0)
-
-#SVM libraries import
-from sklearn.svm import SVC
-from sklearn.metrics import accuracy_score
 
 #Defining SVM Model using Train Data
 clf = SVC(kernel='linear')
@@ -33,15 +35,13 @@ cm = confusion_matrix(y_test,y_pred)
 print(cm)
 
 #Prediction on new data
-r = label_encoder.classes_
 data_pred = pd.read_csv('data/pred_data.csv')
 data_for_pred = data_pred[["contr","energ","maxpr"]].values
 data_pred["pred_SVM"] = ''
 y_pred = clf.predict(data_for_pred)
 y_pred = y_pred.astype(int)
 for i in range(0, len(y_pred)):
-    y_pred_classes = label_encoder.classes_[y_pred[i]]
-    data_pred["pred_SVM"][i] = r[0]#label_encoder.classes_[original_labels[y_pred[i]]]
+    data_pred["pred_SVM"][i] = label_encoder.classes_[y_pred[i]]
 data_pred.to_csv("data/pred_data.csv", index=False)
 
 #Graphical Visulization of Data
