@@ -18,6 +18,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.cluster import KMeans
 from sklearn.metrics import confusion_matrix
 from sklearn import cluster
+from sklearn.metrics import accuracy_score
 
 #importing Dataset and seperating Dependent and independent Variables
 dataset = pd.read_csv('data/im_data.csv')
@@ -62,9 +63,8 @@ def for_accuracy(y, y_pred):
         else:
             wrong = wrong + 1       
         #print(int(y[i]), original_labels[clf_.labels_[i]])  
-    return str((correct/total)*100) + ' %'
-print('Train Accuracy : ', for_accuracy(y_train, clf_.labels_))        
-        
+    return str(round((correct/total)*100, 2)) + ' %'
+print('Train Accuracy : ', for_accuracy(y_train, clf_.labels_))          
 #Predicting using Test Data
 y_pred = kmeans.predict(x_test)
 y_pred_classes = []
