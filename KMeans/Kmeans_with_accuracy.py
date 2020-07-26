@@ -75,7 +75,7 @@ try:
   data_for_accuracy = data_pred[["CLASS"]].values
   print('Test Accuracy : ', for_accuracy(label_encoder.fit_transform(data_for_accuracy.ravel()), y_pred))   
 except:
-  print("An exception occurred") 
+  print("Prediction data doesn't have CLASS column ") 
 #Graphical Visulization of Data
 #Plot Code Starts
 
