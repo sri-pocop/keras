@@ -40,11 +40,12 @@ print(cm)
 
 # silhouette plot
 
-cluster_labels = y_pred
-X = x_test
-clusterer = kmeans
+"""cluster_labels = y_pred
+clusterer = kmeans"""
 
-range_n_clusters = [k]
+X = x
+
+range_n_clusters = [2,3,4,5,6]
 
 for n_clusters in range_n_clusters:
     # Create a subplot with 1 row and 2 columns
@@ -61,8 +62,8 @@ for n_clusters in range_n_clusters:
 
     # Initialize the clusterer with n_clusters value and a random generator
     # seed of 10 for reproducibility.
-    #clusterer = KMeans(n_clusters=n_clusters, random_state=10)
-    #cluster_labels = clusterer.fit_predict(X)
+    clusterer = KMeans(n_clusters=n_clusters, random_state=10)
+    cluster_labels = clusterer.fit_predict(X)
 
     # The silhouette_score gives the average value for all the samples.
     # This gives a perspective into the density and separation of the formed
